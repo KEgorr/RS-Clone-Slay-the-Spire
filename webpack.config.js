@@ -4,6 +4,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const EslintPlugin = require('eslint-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const CopyPlugin = require('copy-webpack-plugin');
 
 const cssLoaders = (extra) => {
   let loaders = [MiniCssExtractPlugin.loader, 'css-loader'];
@@ -44,7 +45,7 @@ const baseConfig = {
     filename: 'index.js',
     path: path.resolve(__dirname, 'dist'),
     assetModuleFilename: 'assets/images/[name].[ext]',
-    publicPath: '/'
+    publicPath: '/',
   },
   plugins: [
     new HtmlWebpackPlugin({
@@ -55,6 +56,14 @@ const baseConfig = {
     new EslintPlugin({ extensions: 'ts' }),
     new MiniCssExtractPlugin({
       filename: '[name].css',
+    }),
+    new CopyPlugin({
+      patterns: [
+        {
+          from: 'assets/*',
+          context: 'src/',
+        },
+      ],
     }),
   ],
 };

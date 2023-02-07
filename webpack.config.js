@@ -16,16 +16,16 @@ const cssLoaders = (extra) => {
 
 const baseConfig = {
   entry: path.resolve(__dirname, './src/index.ts'),
+  output: {
+    filename: 'index.js',
+    path: path.resolve(__dirname, 'dist'),
+  },
   mode: 'development',
   module: {
     rules: [
       {
         test: /\.css$/,
         use: cssLoaders(),
-      },
-      {
-        test: /\.scss$/,
-        use: cssLoaders('sass-loader'),
       },
       {
         test: /\.ts$/,
@@ -36,16 +36,14 @@ const baseConfig = {
         test: /\.(png|svg|jpg|jpeg|gif)$/i,
         type: 'asset/resource',
       },
+      {
+        test: /\.(woff(2)?|ttf|eot|)$/i,
+        type: 'asset/resource',
+      },
     ],
   },
   resolve: {
     extensions: ['.js', '.ts'],
-  },
-  output: {
-    filename: 'index.js',
-    path: path.resolve(__dirname, 'dist'),
-    assetModuleFilename: 'assets/images/[name].[ext]',
-    publicPath: '/',
   },
   plugins: [
     new HtmlWebpackPlugin({
@@ -60,8 +58,8 @@ const baseConfig = {
     new CopyPlugin({
       patterns: [
         {
-          from: 'assets/*',
-          context: 'src/',
+          from: 'src/assets',
+          to: 'assets'
         },
       ],
     }),

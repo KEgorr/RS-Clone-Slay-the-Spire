@@ -1,0 +1,9 @@
+@font-face {
+  font-family: 'Kreon';
+  src: url('../fonts/Kreon-Regular.ttf');
+  font-style: normal;
+}@font-face {
+  font-family: 'Kreon';
+  src: url('../fonts/Kreon-Bold.ttf');
+  font-style: bold;
+}

@@ -60,8 +60,8 @@ const baseConfig = {
     new CopyPlugin({
       patterns: [
         {
-          from: 'assets/*',
-          context: 'src/',
+          from: 'src/assets',
+          to: 'assets',
         },
       ],
     }),
